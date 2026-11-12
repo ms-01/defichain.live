@@ -24,6 +24,7 @@ export function StatisticPanel({
   displayId?: string;
   displayStripCustomStyle?: string;
 }) {
+  const router = useRouter();
   const isHorizontalInTablet = displayItem.length <= 2;
 
   return (
@@ -53,6 +54,11 @@ export function StatisticPanel({
             />
           ))}
         </div>
+      </div>
+      <div className="text-center text-xs text-dark-700 px-4 pb-4">
+        {router.locale === "de"
+          ? "Datenstand: November 2026 · Historische Momentaufnahme, keine Live-Aktualisierung."
+          : "Data as of November 2026 · Historical snapshot, not updated live."}
       </div>
     </section>
   );

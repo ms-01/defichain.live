@@ -66,3 +66,11 @@ public/robots.txt
 
 # Netlify CLI
 .netlify
+
+# Local backups and archived API snapshots
+*.bak
+*.bak-*
+/snapshots/
+
+# TypeScript incremental build cache
+*.tsbuildinfo

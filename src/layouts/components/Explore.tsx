@@ -52,13 +52,6 @@ export function Explore() {
         label: entries[1].title,
         items: [
           {
-            icon: "dfi",
-            href: "https://defiscan.live/",
-            title: entries[1].labels[0].title,
-            testID: "explore-defiscan-live",
-            hasExternalIcon: true,
-          },
-          {
             icon: "crypto",
             href: "https://chainz.cryptoid.info/dfi/",
             title: entries[1].labels[1].title,

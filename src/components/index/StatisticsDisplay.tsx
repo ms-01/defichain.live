@@ -1,42 +1,25 @@
 import { Container } from "@components/commons/Container";
 import { useUnitSuffix } from "@hooks/useUnitSuffix";
-import {
-  StatsData,
-  SupplyData,
-} from "@defichain/whale-api-client/dist/api/stats";
-import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { useWindowDimensions } from "@hooks/useWindowDimensions";
 import { StatisticPanel } from "@components/commons/StatisticPanel";
 import { useRouter } from "next/router";
 import { useTranslation } from "../../hooks/useTranslation";
-import { useWhaleApiClient } from "../../layouts/context/WhaleContext";
+import { staticStatistics } from "../../data/staticStatistics";
 import { calculatePercentage } from "../../shared/calculatePercentage";
 
 export function StatsDisplay() {
-  const api = useWhaleApiClient();
   const router = useRouter();
 
-  const [stats, setStats] = useState<StatsData>();
-  const [supply, setSupply] = useState<SupplyData>();
+  const stats = {
+    tvl: staticStatistics.tvl,
+    count: {
+      masternodes: staticStatistics.masternodes.total,
+    },
+  };
+  const { supply } = staticStatistics;
   const { t } = useTranslation("page-index");
   const dimensions = useWindowDimensions();
-
-  useEffect(() => {
-    api.stats
-      .getSupply()
-      .then((supplyItem) => {
-        setSupply(supplyItem);
-      })
-      .catch((e) => console.error(e));
-
-    api.stats
-      .get()
-      .then((statsItem) => {
-        setStats(statsItem);
-      })
-      .catch((e) => console.error(e));
-  }, [api.stats]);
 
   const { suffix, value } = useUnitSuffix(
     stats ? stats.tvl.masternodes.toString() : "N/A",

@@ -14,7 +14,6 @@ import {
 import { Menu, Transition } from "@headlessui/react";
 import { MdMenu } from "react-icons/md";
 import { IoChevronDown, IoCloseCircleOutline } from "react-icons/io5";
-import { GradientButton } from "@components/commons/Buttons";
 import { useWindowDimensions } from "@hooks/useWindowDimensions";
 import { useDeviceDetect, ViewPort } from "@hooks/useDeviceDetect";
 import { useTranslation } from "../../hooks/useTranslation";
@@ -37,7 +36,6 @@ export function Header(): JSX.Element {
   const [dropDownState, setDropDownState] = useState<
     MobileTabletDropDownState | undefined
   >(undefined);
-  const { t } = useTranslation("layout");
   const ref = useRef<HTMLDivElement>(null);
   const dimension = useWindowDimensions();
   const [isCursorOnHeader, setIsCursorOnHeader] = useState(false);
@@ -160,19 +158,6 @@ export function Header(): JSX.Element {
           <HoverContext.Provider value={desktopContextObj}>
             <DesktopNavbar />
           </HoverContext.Provider>
-
-          <div className="hidden md:flex h-full flex lg:pt-4">
-            <GradientButton
-              className="py-3 px-5 bg-dark-00"
-              buttonText={t("header.navbar.getDfi")}
-              href="/explore/dfi#get-dfi"
-              onClick={() => {
-                if (isMenuActive) {
-                  setIsMenuActive(false);
-                }
-              }}
-            />
-          </div>
         </div>
 
         <div className="lg:hidden ml-[27px]">
@@ -321,9 +306,6 @@ function DesktopMenu({ item }: { item: string }) {
 }
 
 function TabletMobileMenu() {
-  const { t } = useTranslation("layout");
-  const { dropDownState, isMenuActive, setIsMenuActive } =
-    useContext(DropDownContext);
   const ref = useRef<HTMLDivElement>(null);
   const dimension = useWindowDimensions();
   useEffect(() => {
@@ -356,27 +338,6 @@ function TabletMobileMenu() {
             </div>
           );
         })}
-
-        <Container
-          className={classNames(
-            "block md:hidden justify-center mb-[56px]",
-            dropDownState === MobileTabletDropDownState.COMMUNITY
-              ? "mt-[52px]"
-              : "mt-[68px]",
-          )}
-        >
-          <GradientButton
-            className="py-3 bg-dark-00"
-            borderClassName="w-full"
-            buttonText={t("header.navbar.getDfi")}
-            href="/explore/dfi#get-dfi"
-            onClick={() => {
-              if (isMenuActive) {
-                setIsMenuActive(false);
-              }
-            }}
-          />
-        </Container>
 
         <div className="mt-auto accent-gradient-1 h-[0.5px]" />
       </div>

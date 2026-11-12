@@ -20,8 +20,11 @@ export default function FooterColumn({
   category: string;
   customStyle?: string;
   childLinks: FooterLinkItemProps[];
-}): JSX.Element {
+}): JSX.Element | null {
   const { t } = useTranslation("layout");
+  if (childLinks.length === 0) {
+    return null;
+  }
   return (
     <section>
       <h3

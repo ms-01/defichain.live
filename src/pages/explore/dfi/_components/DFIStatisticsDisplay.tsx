@@ -1,31 +1,19 @@
-import { useEffect, useState } from "react";
-import { SupplyData } from "@defichain/whale-api-client/dist/api/stats";
 import { StatisticPanel } from "@components/commons/StatisticPanel";
 import { Container } from "@components/commons/Container";
 import { useUnitSuffix } from "@hooks/useUnitSuffix";
 import classNames from "classnames";
 import { useTranslation } from "../../../../hooks/useTranslation";
-import { useWhaleApiClient } from "../../../../layouts/context/WhaleContext";
+import { staticStatistics } from "../../../../data/staticStatistics";
 import { calculatePercentage } from "../../../../shared/calculatePercentage";
 
 export function DFIStatisticsDisplay() {
-  const api = useWhaleApiClient();
-  const [supply, setSupply] = useState<SupplyData>();
+  const { supply } = staticStatistics;
   const { t } = useTranslation("page-explore-dfi");
 
   const { value: dfiMintedValue, suffix: dfiMintedSuffix } = useUnitSuffix(
     1300000000,
     1,
   );
-
-  useEffect(() => {
-    api.stats
-      .getSupply()
-      .then((supplyItem) => {
-        setSupply(supplyItem);
-      })
-      .catch((e) => console.error(e));
-  }, [api.stats]);
 
   const supplyItems = [
     {

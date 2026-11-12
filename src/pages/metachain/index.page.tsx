@@ -2,10 +2,8 @@ import { HeroBanner, HeroBannerBg } from "@components/commons/HeroBanner";
 import classNames from "classnames";
 import { Head } from "@components/commons/Head";
 import { useWindowDimensions } from "@hooks/useWindowDimensions";
-import * as prismic from "@prismicio/client";
 import { useTranslation } from "../../hooks/useTranslation";
 import { MetaChainKeyFeatures } from "./_components/MetaChainKeyFeatures";
-import { MetaChainRoadmap } from "./_components/MetaChainRoadmap";
 import { MetaChainFAQ } from "./_components/MetaChainFAQ";
 
 export default function MetaChainPage(): JSX.Element {
@@ -39,30 +37,7 @@ export default function MetaChainPage(): JSX.Element {
         />
       </div>
       <MetaChainKeyFeatures />
-      <MetaChainRoadmap />
       <MetaChainFAQ />
     </>
   );
-}
-
-async function getLatestRoadMapUrl(): Promise<string> {
-  try {
-    const endpoint = prismic.createClient("defichain");
-    const metachainData = await endpoint.getByType("metachain");
-    const metachainArr =
-      metachainData.results[metachainData.results.length - 1].data;
-    return metachainArr.metachain_roadmap.url;
-  } catch (e) {
-    console.error(e);
-    return "";
-  }
-}
-
-export async function getStaticProps() {
-  const roadMapImg = await getLatestRoadMapUrl();
-  return {
-    props: {
-      roadMapImg,
-    },
-  };
 }

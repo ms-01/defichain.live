@@ -1,13 +1,10 @@
 import DeFiChainLogo from "@components/icons/DeFiChainLogo";
 import { Container } from "@components/commons/Container";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { useTranslation } from "../../hooks/useTranslation";
 import { LanguageDropdown } from "./LanguageDropdown";
 import FooterInternalBottomLink from "./FooterInternalBottomLink";
 import FooterColumn from "./FooterColumn";
-import SocialsRow from "./SocialsRow";
 
 export const MenuItems = [
   {
@@ -138,22 +135,7 @@ export const MenuItems = [
 ];
 
 export default function Footer(): JSX.Element {
-  const router = useRouter();
   const { t } = useTranslation("layout");
-  // default set language to be english to be directed to international telegram link
-  const [language, setLanguage] = useState(router.locale ?? "");
-
-  // eslint-disable-next-line consistent-return
-  useEffect(() => {
-    switch (router.locale) {
-      case "de":
-        return setLanguage("_DE");
-      case "fr":
-        return setLanguage("_FR");
-      default:
-        setLanguage("");
-    }
-  }, [router]);
   return (
     <footer className="relative bg-dark-00">
       <Container className="relative z-20 mb-[41px] mx-0 md:mb-[64px] lg:mb-[82px]">
@@ -174,27 +156,19 @@ export default function Footer(): JSX.Element {
             {/* RESOURCES */}
             <FooterColumn
               category={MenuItems[1].category}
-              childLinks={MenuItems[1].childLink}
+              childLinks={MenuItems[1].childLink.filter(
+                (link) => link.testId !== "defiscan",
+              )}
               customStyle="pt-[38px]"
             />
             {/* COMMUNITY */}
             <div className="flex flex-col md:flex-row md:items-end lg:flex-col">
               <FooterColumn
                 category={MenuItems[2].category}
-                childLinks={MenuItems[2].childLink}
+                childLinks={MenuItems[2].childLink.filter(
+                  (link) => link.testId !== "blog",
+                )}
                 customStyle="pt-[38px]"
-              />
-              <div className="block md:hidden lg:block lg:w-full">
-                <SocialsRow
-                  customStyle="text-dark-500 flex flex-row gap-5 mt-[22px] mb-8 md:pb-0 md:m-0 md:items-end lg:mt-[26px]"
-                  language={language}
-                />
-              </div>
-            </div>
-            <div className="hidden md:flex md:items-end lg:hidden">
-              <SocialsRow
-                customStyle="text-dark-500 flex flex-row gap-5 mt-[22px] mb-8 md:pb-0 md:m-0 md:items-end lg:mt-[26px]"
-                language={language}
               />
             </div>
           </div>

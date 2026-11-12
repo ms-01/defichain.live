@@ -1,22 +1,29 @@
-import { useEffect, useState } from "react";
-import { StatsData } from "@defichain/whale-api-client/dist/api/stats";
 import { StatisticPanel } from "@components/commons/StatisticPanel";
 import { useUnitSuffix } from "@hooks/useUnitSuffix";
 import { Container } from "@components/commons/Container";
 import classNames from "classnames";
 import { useTranslation } from "../../../../hooks/useTranslation";
-import { useWhaleApiClient } from "../../../../layouts/context/WhaleContext";
+import { staticStatistics } from "../../../../data/staticStatistics";
 
 export function MasternodesStatisticsDisplay() {
-  const api = useWhaleApiClient();
-  const [stats, setStats] = useState<StatsData>();
+  const stats = {
+    masternodes: {
+      locked: [
+        {
+          weeks: 520,
+          count: staticStatistics.masternodes.lockedTenYears,
+        },
+        {
+          weeks: 0,
+          count:
+            staticStatistics.masternodes.lockedTotal -
+            staticStatistics.masternodes.lockedTenYears,
+        },
+      ],
+    },
+    tvl: staticStatistics.tvl,
+  };
   const { t } = useTranslation("page-explore-masternodes");
-
-  useEffect(() => {
-    api.stats.get().then((statsItem) => {
-      setStats(statsItem);
-    });
-  }, [api.stats]);
 
   function reducer(items, prop) {
     if (items === undefined) {

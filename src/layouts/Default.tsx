@@ -6,7 +6,6 @@ import classNames from "classnames";
 import { useDeviceDetect, ViewPort } from "@hooks/useDeviceDetect";
 import Footer from "./components/Footer";
 import { Header } from "./components/Header";
-import { WhaleProvider } from "./context/WhaleContext";
 
 const title = "DeFiChain";
 const linkTitle = "DeFiChain - Connecting old and new worlds";
@@ -55,7 +54,7 @@ export function Default(props: PropsWithChildren<any>): JSX.Element | null {
         <meta
           property="og:url"
           name="og:url"
-          content="https://defichain.com/"
+          content="https://defichain.live/"
         />
         <meta
           property="og:description"
@@ -66,7 +65,7 @@ export function Default(props: PropsWithChildren<any>): JSX.Element | null {
         <meta
           property="og:image"
           name="og:image"
-          content="https://defichain.com/img/og/share.png"
+          content="https://defichain.live/img/og/share.png"
         />
         <meta
           property="og:image:type"
@@ -74,41 +73,32 @@ export function Default(props: PropsWithChildren<any>): JSX.Element | null {
           content="image/png"
         />
 
-        {/* X (formerly twitter) */}
-        <meta name="x:card" content="summary_large_image" />
-        <meta name="x:site" content="@defichain" />
-        <meta name="x:creator" content="@defichain" />
-        <meta name="x:title" content={linkTitle} />
-        <meta name="x:description" content={description} />
-        <meta name="x:image" content="https://defichain.com/img/og/share.png" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
       </Head>
 
       {mounted && (
-        <WhaleProvider>
-          <div className="flex flex-col bg-dark-00 relative z-0 min-h-screen">
-            <Header />
+        <div className="flex flex-col bg-dark-00 relative z-0 min-h-screen">
+          <Header />
+          <div
+            className={classNames(
+              "flex flex-col flex-grow",
+              // responsive mode not counted as DESKTOP
+              device === ViewPort.DESKTOP
+                ? "overflow-x-clip"
+                : "overflow-x-hidden",
+            )}
+          >
+            <main className="flex-grow text-dark-1000">{props.children}</main>
             <div
               className={classNames(
-                "flex flex-col flex-grow",
-                // responsive mode not counted as DESKTOP
-                device === ViewPort.DESKTOP
-                  ? "overflow-x-clip"
-                  : "overflow-x-hidden",
+                "absolute z-[-1] bg-top bg-no-repeat inset-0",
+                bgPicture,
               )}
-            >
-              <main className="flex-grow text-dark-1000">{props.children}</main>
-              <div
-                className={classNames(
-                  "absolute z-[-1] bg-top bg-no-repeat inset-0",
-                  bgPicture,
-                )}
-              />
-              <Footer />
-            </div>
+            />
+            <Footer />
           </div>
-        </WhaleProvider>
+        </div>
       )}
     </div>
   );

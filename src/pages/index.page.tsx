@@ -6,7 +6,6 @@ import { StatsDisplay } from "@components/index/StatisticsDisplay";
 import { ReadyForFlexibility } from "@components/index/ReadyForFlexibility";
 import { Container } from "@components/commons/Container";
 import { StartExploringButton } from "@components/commons/StartExploringButton";
-import { YearAheadRoadMapSection } from "@components/index/RoadMapSection";
 import { BlogPostsSection } from "@components/index/blogPosts/BlogPostsSection";
 import { useTranslation } from "../hooks/useTranslation";
 import { getBlogspotPosts, type Post } from "../lib/blogspotApi";
@@ -29,7 +28,6 @@ export default function HomePage({
       <BlockchainFeaturesSection />
       <DeFiChainEcoSystemSection />
       <ReadyForFlexibility />
-      <YearAheadRoadMapSection />
       <BlogPostsSection blogPosts={Array.isArray(blogPosts) ? blogPosts : []} />
     </>
   );

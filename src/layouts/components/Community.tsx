@@ -95,6 +95,13 @@ export function Community() {
     ],
   };
 
+  MenuItems.dropDownItems[0].items = [];
+  MenuItems.dropDownItems[1].items = MenuItems.dropDownItems[1].items.filter(
+    (item) =>
+      item.testID === "community-github" ||
+      item.testID === "community-coinmarketcap",
+  );
+
   const [hoverState, setHoverState] = useState<string | undefined>(undefined);
   return (
     <div
@@ -103,7 +110,11 @@ export function Community() {
       })}
     >
       {/* first col */}
-      <div className="flex flex-col w-[320px]">
+      <div
+        className={classNames("flex flex-col w-[320px]", {
+          hidden: MenuItems.dropDownItems[0].items.length === 0,
+        })}
+      >
         <div>
           <div className="hidden md:block text-dark-500 font-bold leading-5 mb-10">
             {MenuItems.dropDownItems[0].label}
@@ -133,8 +144,7 @@ export function Community() {
         </div>
         <div
           className={classNames(
-            "grid grid-flow-col xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 xl:grid-rows-4 lg:grid-rows-6 grid-rows-9",
-            "gap-y-6 gap-x-10 lg:gap-x-20 place-items-start",
+            "grid grid-cols-2 gap-y-6 gap-x-10 lg:gap-x-20 place-items-start",
           )}
         >
           {MenuItems.dropDownItems[1].items.map((item, key) => (
@@ -144,7 +154,12 @@ export function Community() {
                 hasExternalIcon
                 hoverState={hoverState}
                 setHoverState={setHoverState}
-                label={item.title}
+                label={
+                  item.title ??
+                  (item.testID === "community-github"
+                    ? "GitHub"
+                    : "CoinMarketCap")
+                }
                 href={item.href}
                 testID={item.testID}
               />

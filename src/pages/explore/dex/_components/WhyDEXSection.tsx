@@ -34,9 +34,6 @@ export function WhyDEXSection(): JSX.Element {
     <SectionGridLayout
       title={t("whyDEX.title")}
       description={t("whyDEX.desc")}
-      buttonText={t("whyDEX.button")}
-      isSecondaryButton
-      href="https://defiscan.live/dex"
       testID="explore-dex"
     >
       <div className="relative">

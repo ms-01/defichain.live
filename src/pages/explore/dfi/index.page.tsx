@@ -4,7 +4,6 @@ import { useTranslation } from "../../../hooks/useTranslation";
 // import { Container } from "@components/commons/Container";
 import { DFIStatisticsDisplay } from "./_components/DFIStatisticsDisplay";
 import HarnessDFISection from "./_components/HarnessDFISection";
-import GetDFISection from "./_components/GetDFISection";
 // import { ExploreCards, ExploreCardsImage } from "../_components/ExploreCards";
 import { InitialTokenDistributionSection } from "./_components/InitialTokenDistributionSection";
 import ERC20Section from "./_components/ERC20Section";
@@ -26,7 +25,6 @@ export default function ExploreDFI() {
       <DFIStatisticsDisplay />
       <HarnessDFISection />
       <InitialTokenDistributionSection />
-      <GetDFISection />
       <ERC20Section />
       {/* TODO: uncomment after mvp */}
       {/* <Container className="lg:mb-8 md:mb-6 mb-4">
