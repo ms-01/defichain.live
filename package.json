@@ -1,5 +1,5 @@
 {
-  "name": "@defichain/defichain.com",
+  "name": "@defichain/defichain.live",
   "private": true,
   "scripts": {
     "prepare": "husky install",

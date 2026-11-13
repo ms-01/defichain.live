@@ -1,104 +1,59 @@
 import { PageHeader } from "@components/commons/PageHeader";
 import { Container } from "@components/commons/Container";
-import Link from "next/link";
 import { Section } from "@components/commons/Section";
-import { Button } from "@components/commons/Buttons";
 import { Head } from "@components/commons/Head";
 import React from "react";
 import { useTranslation } from "../../hooks/useTranslation";
 import { Hunter } from "./_components/Hunter";
 
 export default function BugBountyPage(): JSX.Element {
-  const { t } = useTranslation("page-bugbounty");
-  const submissionList: any[] = t("SubmissionSection.list.entries", {
-    returnObjects: true,
-  });
-
   return (
     <>
-      <Head title={t("Head.title")} description={t("Head.desc")} />
-      <PageHeader title={t("Header.title")}>
-        <div className="mt-10 flex flex-wrap">
-          <div
-            className="w-full text-2xl text-gray-900"
-            data-testid="Header.desc.main"
-          >
-            {t("Header.desc")}
-          </div>
-          <div className="flex flex-wrap mt-14 items-center">
-            <a className="contents" href="#submission">
-              <Button text={t("Header.submit")} testID="bug-bounty-btn" />
-            </a>
-          </div>
+      <Head
+        title="Historical Bug Bounty Archive"
+        description="Historical records of the former DeFiChain Bug Bounty Program."
+      />
+
+      <PageHeader title="Historical Bug Bounty Archive">
+        <div className="mt-10 text-xl text-gray-900">
+          This page preserves information about the former DeFiChain Bug Bounty
+          Program.
         </div>
       </PageHeader>
+
       <Container>
+        <Section title="Program Status" testId="ProgramStatus">
+          <div className="text-gray-900">
+            <p>
+              The original DeFiChain Bug Bounty Program is documented here for
+              historical reference only.
+            </p>
+
+            <p className="mt-4">
+              DeFiChain.live does not operate or guarantee the former program,
+              its reward offers, submission procedures, or security contacts.
+            </p>
+
+            <p className="mt-4">
+              The former program advertised rewards of up to USD 50,000. This
+              was a historical offer and does not constitute a current reward
+              commitment.
+            </p>
+
+            <p className="mt-4">
+              This archive may serve as a foundation for a future community-led
+              security program. No such program is announced by this page.
+            </p>
+
+            <p className="mt-4">
+              Please do not publish exploitable security vulnerabilities in
+              public issues. For vulnerabilities affecting this website, use a
+              private reporting channel confirmed by the repository maintainers.
+            </p>
+          </div>
+        </Section>
+
         <LeaderboardSection />
-        <Section title={t("HowToSection.title")} testId="HowToSection">
-          <div>
-            {/* <Trans
-              t={t}
-              i18nKey="HowToSection.desc"
-              components={[
-                <pre key="0" className="inline">
-                  defid -testnet
-                </pre>,
-                <ExternalLink
-                  key="1"
-                  className="text-primary-500"
-                  url="https://github.com/defich/ain"
-                />,
-              ]}
-            /> */}
-            <span className="block font-semibold mt-2.5">
-              {t("HowToSection.bolded")}
-            </span>
-          </div>
-        </Section>
-        <Section
-          title={t("SubmissionSection.title")}
-          testId="SubmissionSection"
-        >
-          <div id="submission">
-            {/* <Trans
-              t={t}
-              i18nKey="SubmissionSection.desc"
-              components={[
-                <ExternalLink
-                  key="0"
-                  className="text-primary-500"
-                  url="https://github.com/defich/ain"
-                />,
-                <ExternalLink
-                  key="1"
-                  className="text-primary-500"
-                  url="mailto:security@defichain.com"
-                />,
-              ]}
-            /> */}
-            <div className="text-sm mt-1">
-              [GPG:
-              <Link
-                href={{ pathname: "/keys/security@defichain.com.public.key" }}
-                passHref
-                className="contents"
-              >
-                <span className="text-primary-500 hover:underline cursor-pointer ml-1">
-                  F7CE 1F52 D5ED 7EE3 FC37 4614 E2C1 1358 5F01 B88B
-                </span>
-              </Link>
-              ]
-            </div>
-          </div>
-          <div className="mt-5">
-            {t("SubmissionSection.list.title")}
-            <ul className="list-disc pl-4">
-              {submissionList.map((item, index) => (
-                <li key={`list-item-${index}`}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </Section>
       </Container>
     </>
   );
@@ -106,18 +61,21 @@ export default function BugBountyPage(): JSX.Element {
 
 function LeaderboardSection(): JSX.Element {
   const { t } = useTranslation("page-bugbounty");
+
   const hunters: any[] = t("LeaderboardSection.hunters", {
     returnObjects: true,
   });
 
   return (
-    <Section title={t("LeaderboardSection.title")} testId="LeaderboardSection">
+    <Section title="Historical Leaderboard" testId="LeaderboardSection">
       <div
         className="w-full text-xl text-gray-900 mb-6"
         data-testid="Header.desc.main"
       >
-        {t("LeaderboardSection.desc")}
+        Historical recognition of participants in the former DeFiChain Bug
+        Bounty Program.
       </div>
+
       <div>
         {hunters.map((hunter, index) => (
           <Hunter hunter={hunter} index={index} key={`hunter-${index}`} />

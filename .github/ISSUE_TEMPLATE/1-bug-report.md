@@ -7,7 +7,7 @@ labels: kind/bug
 <!--
 Please use this template while reporting a bug and provide as much info as possible.
 
-If the matter is security related, please disclose it privately via security@defichain.com
+For security-sensitive issues, do not disclose vulnerability details in public GitHub issues. Contact the repository maintainers to arrange a private reporting channel.
 -->
 
 #### What happened:

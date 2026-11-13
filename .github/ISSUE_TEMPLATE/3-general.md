@@ -5,5 +5,5 @@ labels: kind/question
 ---
 
 <!--
-If the matter is security related, please disclose it privately via security@defichain.com
+For security-sensitive issues, do not disclose vulnerability details in public GitHub issues. Contact the repository maintainers to arrange a private reporting channel.
 -->

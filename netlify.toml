@@ -36,10 +36,6 @@
   to = "/404"
   status = 302
 
-[[redirects]]
-  from = "/bug-bounty"
-  to = "/404"
-  status = 302
 
 [[redirects]]
   from = "/security"
