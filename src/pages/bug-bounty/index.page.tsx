@@ -15,7 +15,7 @@ export default function BugBountyPage(): JSX.Element {
       />
 
       <PageHeader title="Historical Bug Bounty Archive">
-        <div className="mt-10 text-xl text-gray-900">
+        <div className="mt-10 text-xl text-gray-200">
           This page preserves information about the former DeFiChain Bug Bounty
           Program.
         </div>
@@ -23,7 +23,7 @@ export default function BugBountyPage(): JSX.Element {
 
       <Container>
         <Section title="Program Status" testId="ProgramStatus">
-          <div className="text-gray-900">
+          <div className="text-gray-200">
             <p>
               The original DeFiChain Bug Bounty Program is documented here for
               historical reference only.
@@ -69,7 +69,7 @@ function LeaderboardSection(): JSX.Element {
   return (
     <Section title="Historical Leaderboard" testId="LeaderboardSection">
       <div
-        className="w-full text-xl text-gray-900 mb-6"
+        className="w-full text-xl text-gray-200 mb-6"
         data-testid="Header.desc.main"
       >
         Historical recognition of participants in the former DeFiChain Bug
